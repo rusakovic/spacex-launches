@@ -1,15 +1,15 @@
-import styled from 'constants/styled'
-import React from 'react'
-import { Pressable, TextInput, View } from 'react-native'
-import { SearchInputStyles } from './styles'
-import { Feather as Icon } from '@expo/vector-icons'
+import styled from 'constants/styled';
+import React from 'react';
+import {Pressable, TextInput, View} from 'react-native';
+import {SearchInputStyles} from './styles';
+import Ionicons from 'react-native-vector-icons/Ionicons';
 
 interface SearchInputProps {
-  searchText: string
-  setSearchText: React.Dispatch<React.SetStateAction<string>>
-  isSearchTextFilled: boolean
-  onClearSearchInputHandler: () => void
-  isDisabled: boolean
+  searchText: string;
+  setSearchText: React.Dispatch<React.SetStateAction<string>>;
+  isSearchTextFilled: boolean;
+  onClearSearchInputHandler: () => void;
+  isDisabled: boolean;
 }
 
 const SearchInput: React.FunctionComponent<SearchInputProps> = ({
@@ -24,20 +24,19 @@ const SearchInput: React.FunctionComponent<SearchInputProps> = ({
       <View style={SearchInputStyles.searchInput}>
         <TextInput
           value={searchText}
-          placeholder='search...'
+          placeholder="search..."
           style={SearchInputStyles.searchField}
           onChangeText={setSearchText}
-          keyboardType='numeric'
+          keyboardType="numeric"
           editable={!isDisabled}
           selectTextOnFocus={!isDisabled}
         />
         {isSearchTextFilled ? (
           <Pressable
             style={SearchInputStyles.crossButtonWrapper}
-            onPress={onClearSearchInputHandler}
-          >
-            <Icon
-              name='x-circle'
+            onPress={onClearSearchInputHandler}>
+            <Ionicons
+              name="x-circle"
               size={20}
               color={styled.colors.grey30opacity}
             />
@@ -47,7 +46,7 @@ const SearchInput: React.FunctionComponent<SearchInputProps> = ({
         )}
       </View>
     </View>
-  )
-}
+  );
+};
 
-export default SearchInput
+export default SearchInput;

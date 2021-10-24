@@ -1,4 +1,5 @@
 import DefaultText from 'components/atoms/Text/DefaultText/DefaultText';
+import {LaunchPreview} from 'components/molecules';
 import React from 'react';
 import {FlatList, View} from 'react-native';
 import {usePreviousLaunches} from 'utils/fetchLaunches';
@@ -16,7 +17,18 @@ const PreviousLaunchScreen: React.FunctionComponent<PreviousLaunchScreenProps> =
           data={data}
           keyExtractor={item => item.id}
           renderItem={({item}) => {
-            return <DefaultText>{item.id}</DefaultText>;
+            console.log(
+              '🚀 ~ file: PreviousLaunchScreen.tsx ~ line 28 ~ item',
+              item,
+            );
+            return (
+              <LaunchPreview
+                missionName={item.name}
+                isSuccessful={item.success}
+                date={item.static_fire_date_unix}
+                images={item.links?.flickr?.original ?? null}
+              />
+            );
           }}
         />
       </View>

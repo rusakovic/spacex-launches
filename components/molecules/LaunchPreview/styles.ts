@@ -1,12 +1,12 @@
-import { StyleSheet } from 'react-native'
+import {StyleSheet} from 'react-native';
 import {
   heightPercentageToDP as hp,
   widthPercentageToDP as wp,
-} from 'react-native-responsive-screen'
-import styled from '@constants/styled'
+} from 'react-native-responsive-screen';
+import styled from '@constants/styled';
 
 export const PostPreviewStyles = StyleSheet.create({
-  mainWrapper: { flex: 1, marginHorizontal: wp(4), marginVertical: hp(1) },
+  mainWrapper: {flex: 1, marginHorizontal: wp(4), marginVertical: hp(2)},
   postContainer: {
     height: hp(10),
     width: '100%',
@@ -22,4 +22,4 @@ export const PostPreviewStyles = StyleSheet.create({
     backgroundColor: styled.colors.white.white,
     shadowRadius: 5,
   },
-})
+});

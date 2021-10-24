@@ -25,22 +25,42 @@ const Navigator = () => {
           name={Routes.PreviousLaunchScreen}
           component={PreviousLaunchScreen}
           options={{
-            tabBarIcon: () => (
-              <Ionicons name="ios-play-back-outline" color="black" size={24} />
+            tabBarIcon: ({focused}) => (
+              <Ionicons
+                name="ios-play-back-outline"
+                color={
+                  focused
+                    ? styled.colors.grey70opacity
+                    : styled.colors.grey40opacity
+                }
+                size={24}
+              />
             ),
             tabBarLabel: 'PREVIOUS',
             headerTitle: 'Previous Launches',
+            tabBarActiveTintColor: styled.colors.grey70opacity,
+            tabBarInactiveTintColor: styled.colors.grey40opacity,
           }}
         />
         <Tab.Screen
           name={Routes.NextLaunchScreen}
           component={NextLaunchScreen}
           options={{
-            tabBarIcon: () => (
-              <Ionicons name="ios-rocket-outline" color="black" size={24} />
+            tabBarIcon: ({focused}) => (
+              <Ionicons
+                name="ios-rocket-outline"
+                color={
+                  focused
+                    ? styled.colors.grey70opacity
+                    : styled.colors.grey40opacity
+                }
+                size={24}
+              />
             ),
             tabBarLabel: 'NEXT',
             headerTitle: 'Next Launches',
+            tabBarActiveTintColor: styled.colors.grey70opacity,
+            tabBarInactiveTintColor: styled.colors.grey40opacity,
           }}
         />
       </Tab.Navigator>

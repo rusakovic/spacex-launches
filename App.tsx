@@ -1,11 +1,11 @@
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {DefaultTheme, NavigationContainer} from '@react-navigation/native';
-import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import styled from 'constants/styled';
 import React from 'react';
 import {SafeAreaView, StatusBar, StyleSheet} from 'react-native';
 import {Routes} from 'routes/routes';
 import {NextLaunchScreen, PreviousLaunchScreen} from 'screens';
+import Ionicons from 'react-native-vector-icons/Ionicons';
 
 const Tab = createBottomTabNavigator();
 
@@ -24,10 +24,24 @@ const Navigator = () => {
         <Tab.Screen
           name={Routes.PreviousLaunchScreen}
           component={PreviousLaunchScreen}
+          options={{
+            tabBarIcon: () => (
+              <Ionicons name="ios-play-back-outline" color="black" size={24} />
+            ),
+            tabBarLabel: 'PREVIOUS',
+            headerTitle: 'Previous Launches',
+          }}
         />
         <Tab.Screen
           name={Routes.NextLaunchScreen}
           component={NextLaunchScreen}
+          options={{
+            tabBarIcon: () => (
+              <Ionicons name="ios-rocket-outline" color="black" size={24} />
+            ),
+            tabBarLabel: 'NEXT',
+            headerTitle: 'Next Launches',
+          }}
         />
       </Tab.Navigator>
     </NavigationContainer>
@@ -36,7 +50,7 @@ const Navigator = () => {
 
 const App = () => {
   return (
-    <SafeAreaView style={{backgroundColor: 'white', flex: 1}}>
+    <SafeAreaView style={styles.safeAreaWrapper}>
       <StatusBar barStyle="dark-content" />
       <Navigator />
     </SafeAreaView>
@@ -44,22 +58,7 @@ const App = () => {
 };
 
 const styles = StyleSheet.create({
-  sectionContainer: {
-    marginTop: 32,
-    paddingHorizontal: 24,
-  },
-  sectionTitle: {
-    fontSize: 24,
-    fontWeight: '600',
-  },
-  sectionDescription: {
-    marginTop: 8,
-    fontSize: 18,
-    fontWeight: '400',
-  },
-  highlight: {
-    fontWeight: '700',
-  },
+  safeAreaWrapper: {backgroundColor: 'white', flex: 1},
 });
 
 export default App;

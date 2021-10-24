@@ -6,8 +6,10 @@ import {SafeAreaView, StatusBar, StyleSheet} from 'react-native';
 import {Routes} from 'routes/routes';
 import {NextLaunchScreen, PreviousLaunchScreen} from 'screens';
 import Ionicons from 'react-native-vector-icons/Ionicons';
+import {QueryClient, QueryClientProvider} from 'react-query';
 
 const Tab = createBottomTabNavigator();
+const queryClient = new QueryClient();
 
 const Navigator = () => {
   const AppTheme = {
@@ -70,10 +72,12 @@ const Navigator = () => {
 
 const App = () => {
   return (
-    <SafeAreaView style={styles.safeAreaWrapper}>
-      <StatusBar barStyle="dark-content" />
-      <Navigator />
-    </SafeAreaView>
+    <QueryClientProvider client={queryClient}>
+      <SafeAreaView style={styles.safeAreaWrapper}>
+        <StatusBar barStyle="dark-content" />
+        <Navigator />
+      </SafeAreaView>
+    </QueryClientProvider>
   );
 };
 

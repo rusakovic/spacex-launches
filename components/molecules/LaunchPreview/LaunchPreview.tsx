@@ -29,16 +29,19 @@ const LaunchPreview: React.FunctionComponent<LaunchPreviewProps> = ({
 
   const {navigate} = useNavigation();
 
+  const humanDate = dayjs.unix(date).format('DD.MM.YYYY');
+
   const onNavigationHandler = () => {
     navigate(Routes.LaunchDetailsScreen, {
       images,
       isSuccessful,
-      date,
+      date: humanDate,
       missionName,
       areImages,
       details,
     });
   };
+
   return (
     <Pressable
       onPress={onNavigationHandler}
@@ -74,9 +77,7 @@ const LaunchPreview: React.FunctionComponent<LaunchPreviewProps> = ({
             {/* LAUNCH DATE */}
             <ContainerCenter>
               <DefaultText xxs2>launch date:</DefaultText>
-              <DefaultText xs>
-                {dayjs.unix(date).format('DD.MM.YYYY')}
-              </DefaultText>
+              <DefaultText xs>{humanDate}</DefaultText>
             </ContainerCenter>
 
             {/* SUCCESS ICON */}

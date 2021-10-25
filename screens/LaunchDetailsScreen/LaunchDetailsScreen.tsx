@@ -3,7 +3,6 @@ import ContainerCenter from 'components/atoms/Containers/ContainerCenter';
 import DefaultText from 'components/atoms/Text/DefaultText/DefaultText';
 import {LaunchPreviewProps} from 'components/molecules/LaunchPreview/LaunchPreview';
 import styled from 'constants/styled';
-import dayjs from 'dayjs';
 import React from 'react';
 import {Image, ScrollView, View} from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
@@ -18,6 +17,10 @@ const LaunchDetailsScreen: React.FunctionComponent<LaunchDetailsScreenProps> =
     const {
       params: {images, isSuccessful, date, missionName, areImages, details},
     } = useRoute<RouteProp<Record<string, LaunchDetailsScreenProps>, string>>();
+    console.log(
+      '🚀 ~ file: LaunchDetailsScreen.tsx ~ line 20 ~ images',
+      images,
+    );
 
     return (
       <View style={LaunchDetailsScreenStyles.mainWrapper}>
@@ -57,9 +60,7 @@ const LaunchDetailsScreen: React.FunctionComponent<LaunchDetailsScreenProps> =
               {/* LAUNCH DATE */}
               <ContainerCenter>
                 <DefaultText xxs2>launch date:</DefaultText>
-                <DefaultText xs>
-                  {dayjs.unix(date).format('DD.MM.YYYY')}
-                </DefaultText>
+                <DefaultText xs>{date}</DefaultText>
               </ContainerCenter>
 
               {/* SUCCESS ICON */}

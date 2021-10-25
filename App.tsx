@@ -87,6 +87,7 @@ const Navigator = () => {
         <StackNavigator.Screen
           name={Routes.LaunchDetailsScreen}
           component={LaunchDetailsScreen}
+          options={{headerTitle: 'Launch details'}}
         />
       </StackNavigator.Navigator>
     </NavigationContainer>

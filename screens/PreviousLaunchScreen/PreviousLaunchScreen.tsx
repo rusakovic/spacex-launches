@@ -1,18 +1,41 @@
+import {LaunchesNotFound, SearchInput} from 'components/molecules';
 import React from 'react';
 import {CommonLaunchScreen} from 'screens';
 import {usePreviousLaunches} from 'utils/fetchLaunches';
+import {useSearchInputData} from 'utils/hooks/useSearchInputData';
 
 const PreviousLaunchScreen: React.FunctionComponent = () => {
   const {isFetching, data, error, isError} = usePreviousLaunches();
-  console.log('🚀 ~ file: PreviousLaunchScreen.tsx ~ line 7 ~ data', data);
+
+  const {
+    filteredLaunches,
+    onClearSearchInputHandler,
+    searchText,
+    setSearchText,
+    isSearchTextFilled,
+    isFilteredLaunchesEmpty,
+  } = useSearchInputData(data);
 
   return (
-    <CommonLaunchScreen
-      data={data}
-      isFetching={isFetching}
-      error={error}
-      isError={isError}
-    />
+    <>
+      <SearchInput
+        setSearchText={setSearchText}
+        searchText={searchText}
+        isSearchTextFilled={isSearchTextFilled}
+        onClearSearchInputHandler={onClearSearchInputHandler}
+        isDisabled={isError}
+      />
+      {isFilteredLaunchesEmpty ? (
+        <LaunchesNotFound />
+      ) : (
+        <CommonLaunchScreen
+          data={filteredLaunches}
+          isFetching={isFetching}
+          error={error}
+          isError={isError}
+        />
+      )}
+    </>
   );
 };
 

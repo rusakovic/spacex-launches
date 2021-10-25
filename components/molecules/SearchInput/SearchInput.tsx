@@ -36,7 +36,7 @@ const SearchInput: React.FunctionComponent<SearchInputProps> = ({
             style={SearchInputStyles.crossButtonWrapper}
             onPress={onClearSearchInputHandler}>
             <Ionicons
-              name="x-circle"
+              name="md-close-circle-outline"
               size={20}
               color={styled.colors.grey30opacity}
             />

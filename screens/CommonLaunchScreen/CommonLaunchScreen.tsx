@@ -42,6 +42,7 @@ const CommonLaunchScreen: React.FunctionComponent<CommonLaunchScreenProps> = ({
       <FlatList
         data={data}
         keyExtractor={item => item.id}
+        initialNumToRender={10}
         renderItem={({item}) => {
           // If images or rockets not exist - use patches
           const imageArray = item.links.flickr.original.length

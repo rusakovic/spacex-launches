@@ -51,7 +51,7 @@ const CommonLaunchScreen: React.FunctionComponent<CommonLaunchScreenProps> = ({
             <LaunchPreview
               missionName={item.name}
               isSuccessful={item.success}
-              date={item.static_fire_date_unix}
+              date={item.date_unix}
               images={imageArray}
             />
           );

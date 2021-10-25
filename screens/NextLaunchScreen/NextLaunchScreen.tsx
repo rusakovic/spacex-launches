@@ -1,16 +1,19 @@
-import DefaultText from 'components/atoms/Text/DefaultText/DefaultText';
 import React from 'react';
-import {View} from 'react-native';
+import {CommonLaunchScreen} from 'screens';
+import {useNextLaunches} from 'utils/fetchLaunches';
 
-interface NextLaunchScreenProps {}
+const NextLaunchScreen: React.FunctionComponent = () => {
+  const {isFetching, data, error, isError} = useNextLaunches();
+  console.log('🚀 ~ file: NextLaunchScreen.tsx ~ line 7 ~ data', data);
 
-const NextLaunchScreen: React.FunctionComponent<NextLaunchScreenProps> =
-  props => {
-    return (
-      <View>
-        <DefaultText>Launch Screen</DefaultText>
-      </View>
-    );
-  };
+  return (
+    <CommonLaunchScreen
+      data={data}
+      isFetching={isFetching}
+      error={error}
+      isError={isError}
+    />
+  );
+};
 
 export default NextLaunchScreen;

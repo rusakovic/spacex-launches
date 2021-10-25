@@ -20,44 +20,39 @@ const LaunchPreview: React.FunctionComponent<LaunchPreviewProps> = ({
   date,
   missionName,
 }) => {
+  const areImages = images?.[0] ?? false;
+
   return (
     <View style={PostPreviewStyles.mainWrapper}>
       <View style={PostPreviewStyles.postContainer}>
+        {/* IMAGE */}
         <ContainerCenter
           alignItemsCenter
           isVerticalCenter
-          style={{
-            width: '40%',
-            borderRightWidth: 1,
-            borderRightColor: styled.colors.grey10opacity,
-          }}>
-          <View
-            style={{
-              height: '100%',
-              width: '100%',
-              borderTopLeftRadius: 5,
-              borderBottomLeftRadius: 5,
-              overflow: 'hidden',
-            }}>
-            <Image
-              source={{uri: images ? images[0] : ''}}
-              style={{height: '100%'}}
-              resizeMode="cover"
-            />
+          style={PostPreviewStyles.imageContainer}>
+          <View style={PostPreviewStyles.imageWrapper}>
+            {areImages ? (
+              <Image
+                source={{uri: images ? images[0] : ''}}
+                style={PostPreviewStyles.image}
+                resizeMode="cover"
+              />
+            ) : (
+              <ContainerCenter isVerticalCenter>
+                <DefaultText xxs2 isTextAlignCenter>
+                  no images
+                </DefaultText>
+              </ContainerCenter>
+            )}
           </View>
         </ContainerCenter>
 
-        <ContainerCenter
-          style={{
-            width: '60%',
-            paddingHorizontal: '2%',
-            paddingVertical: '2%',
-            justifyContent: 'space-between',
-            height: '100%',
-          }}>
+        {/* MISSION INFO */}
+        <ContainerCenter style={PostPreviewStyles.missionInfoContainer}>
           <DefaultText>{missionName}</DefaultText>
 
           <ContainerCenter flexDirectionRow justifyContentSpaceBetween>
+            {/* LAUNCH DATE */}
             <ContainerCenter>
               <DefaultText xxs2>launch date:</DefaultText>
               <DefaultText xs>
@@ -65,6 +60,7 @@ const LaunchPreview: React.FunctionComponent<LaunchPreviewProps> = ({
               </DefaultText>
             </ContainerCenter>
 
+            {/* SUCCESS ICON */}
             <ContainerCenter>
               <DefaultText xxs2>successful:</DefaultText>
               <Ionicons
@@ -79,7 +75,7 @@ const LaunchPreview: React.FunctionComponent<LaunchPreviewProps> = ({
                     ? styled.colors.green.checkmark
                     : styled.colors.red.redButton
                 }
-                style={{textAlign: 'right'}}
+                style={PostPreviewStyles.successIcon}
               />
             </ContainerCenter>
           </ContainerCenter>

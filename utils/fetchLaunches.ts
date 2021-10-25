@@ -7,6 +7,12 @@ const fetchLaunches = (apiUrl: string): Promise<LaunchType[]> =>
 
 export const usePreviousLaunches = () => {
   return useQuery('previousLaunches', () =>
-    fetchLaunches('https://api.spacexdata.com/v4/launches/past'),
+    fetchLaunches('https://api.spacexdata.com/v5/launches/past'),
+  );
+};
+
+export const useNextLaunches = () => {
+  return useQuery('nextLaunches', () =>
+    fetchLaunches('https://api.spacexdata.com/v5/launches/upcoming'),
   );
 };

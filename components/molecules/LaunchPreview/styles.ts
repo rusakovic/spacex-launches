@@ -22,4 +22,29 @@ export const PostPreviewStyles = StyleSheet.create({
     backgroundColor: styled.colors.white.white,
     shadowRadius: 5,
   },
+  imageContainer: {
+    width: '40%',
+    borderRightWidth: 1,
+    borderRightColor: styled.colors.grey10opacity,
+  },
+  imageWrapper: {
+    height: '100%',
+    width: '100%',
+    borderTopLeftRadius: 5,
+    borderBottomLeftRadius: 5,
+    overflow: 'hidden',
+  },
+  image: {
+    height: '100%',
+  },
+  missionInfoContainer: {
+    width: '60%',
+    paddingHorizontal: '2%',
+    paddingVertical: '2%',
+    justifyContent: 'space-between',
+    height: '100%',
+  },
+  successIcon: {
+    textAlign: 'right',
+  },
 });

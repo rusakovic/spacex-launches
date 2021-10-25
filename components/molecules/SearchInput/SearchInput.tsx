@@ -25,9 +25,9 @@ const SearchInput: React.FunctionComponent<SearchInputProps> = ({
         <TextInput
           value={searchText}
           placeholder="search..."
+          placeholderTextColor={styled.colors.grey50opacity}
           style={SearchInputStyles.searchField}
           onChangeText={setSearchText}
-          keyboardType="numeric"
           editable={!isDisabled}
           selectTextOnFocus={!isDisabled}
         />

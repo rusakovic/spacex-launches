@@ -9,15 +9,20 @@ export const useSearchInputData = (data: LaunchType[] | undefined) => {
     setSearchText('');
   };
 
+  const lowerCasedSearchText = searchText.toLowerCase();
+
   const filterLaunchesByName = () =>
     isSearchTextFilled && data
       ? filter(data, item =>
-          includes(item.name.replace(' ', '').toLowerCase(), searchText),
+          includes(
+            item.name.replace(' ', '').toLowerCase(),
+            lowerCasedSearchText,
+          ),
         )
       : data;
 
   const filteredLaunches = useMemo(filterLaunchesByName, [
-    searchText,
+    lowerCasedSearchText,
     isSearchTextFilled,
     data,
   ]);

@@ -1,17 +1,14 @@
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import {
-  DefaultTheme,
-  getFocusedRouteNameFromRoute,
-  NavigationContainer,
-  ParamListBase,
-  RouteProp,
-  useRoute,
-} from '@react-navigation/native';
+import {DefaultTheme, NavigationContainer} from '@react-navigation/native';
 import styled from 'constants/styled';
 import React from 'react';
 import {SafeAreaView, StatusBar, StyleSheet} from 'react-native';
 import {Routes} from 'routes/routes';
-import {LaunchPreview, NextLaunchScreen, PreviousLaunchScreen} from 'screens';
+import {
+  LaunchDetailsScreen,
+  NextLaunchScreen,
+  PreviousLaunchScreen,
+} from 'screens';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import {QueryClient, QueryClientProvider} from 'react-query';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
@@ -32,7 +29,7 @@ const Navigator = () => {
 
   return (
     <NavigationContainer theme={AppTheme}>
-      <StackNavigator.Navigator>
+      <StackNavigator.Navigator initialRouteName={Routes.PreviousLaunchScreen}>
         <StackNavigator.Screen
           name={Routes.RootStack}
           options={({route}) => ({
@@ -88,8 +85,8 @@ const Navigator = () => {
           }}
         </StackNavigator.Screen>
         <StackNavigator.Screen
-          name={Routes.LaunchPreview}
-          component={LaunchPreview}
+          name={Routes.LaunchDetailsScreen}
+          component={LaunchDetailsScreen}
         />
       </StackNavigator.Navigator>
     </NavigationContainer>

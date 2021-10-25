@@ -8,12 +8,14 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import dayjs from 'dayjs';
 import {useNavigation} from '@react-navigation/core';
 import {Routes} from 'routes/routes';
+import {Flickr, LaunchType} from 'types/launch';
 
-interface LaunchPreviewProps {
-  missionName: string;
-  date: number;
-  isSuccessful: boolean;
-  images: string[] | null;
+export interface LaunchPreviewProps {
+  missionName: LaunchType['name'];
+  date: LaunchType['date_unix'];
+  isSuccessful: LaunchType['success'];
+  images: Flickr['original'] | null;
+  details: LaunchType['details'];
 }
 
 const LaunchPreview: React.FunctionComponent<LaunchPreviewProps> = ({
@@ -21,17 +23,20 @@ const LaunchPreview: React.FunctionComponent<LaunchPreviewProps> = ({
   isSuccessful,
   date,
   missionName,
+  details,
 }) => {
   const areImages = images?.[0] ?? false;
 
   const {navigate} = useNavigation();
 
   const onNavigationHandler = () => {
-    navigate(Routes.LaunchPreview, {
+    navigate(Routes.LaunchDetailsScreen, {
       images,
       isSuccessful,
       date,
       missionName,
+      areImages,
+      details,
     });
   };
   return (

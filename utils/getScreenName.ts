@@ -17,6 +17,6 @@ export const getHeaderTitle = (
       return 'Next Launches';
 
     default:
-      return '';
+      return 'Previous Launches';
   }
 };

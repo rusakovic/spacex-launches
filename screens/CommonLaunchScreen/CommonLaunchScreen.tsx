@@ -53,6 +53,7 @@ const CommonLaunchScreen: React.FunctionComponent<CommonLaunchScreenProps> = ({
               isSuccessful={item.success}
               date={item.date_unix}
               images={imageArray}
+              details={item.details}
             />
           );
         }}

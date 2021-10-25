@@ -9,7 +9,8 @@ import dayjs from 'dayjs';
 import {useNavigation} from '@react-navigation/core';
 import {Routes} from 'routes/routes';
 import {Flickr, LaunchType} from 'types/launch';
-
+import {StackNavigationProp} from '@react-navigation/stack';
+import {RootStackParamList} from 'types/route';
 export interface LaunchPreviewProps {
   missionName: LaunchType['name'];
   date: LaunchType['date_unix'];
@@ -25,9 +26,12 @@ const LaunchPreview: React.FunctionComponent<LaunchPreviewProps> = ({
   missionName,
   details,
 }) => {
-  const areImages = images?.[0] ?? false;
+  const areImages = !!images?.[0] ?? false;
 
-  const {navigate} = useNavigation();
+  const {navigate} =
+    useNavigation<
+      StackNavigationProp<RootStackParamList, Routes.LaunchDetailsScreen>
+    >();
 
   const humanDate = dayjs.unix(date).format('DD.MM.YYYY');
 

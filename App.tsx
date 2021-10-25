@@ -13,9 +13,10 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import {QueryClient, QueryClientProvider} from 'react-query';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {getHeaderTitle} from 'utils/getScreenName';
+import {RootStackParamList} from 'types/route';
 
 const Tab = createBottomTabNavigator();
-const StackNavigator = createNativeStackNavigator();
+const StackNavigator = createNativeStackNavigator<RootStackParamList>();
 const queryClient = new QueryClient();
 
 const Navigator = () => {

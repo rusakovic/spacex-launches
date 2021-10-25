@@ -1,11 +1,13 @@
 import ContainerCenter from 'components/atoms/Containers/ContainerCenter';
 import DefaultText from '@components/atoms/Text/DefaultText/DefaultText';
 import React from 'react';
-import {Image, View} from 'react-native';
+import {Image, Pressable, View} from 'react-native';
 import styled from '@constants/styled';
 import {PostPreviewStyles} from './styles';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import dayjs from 'dayjs';
+import {useNavigation} from '@react-navigation/core';
+import {Routes} from 'routes/routes';
 
 interface LaunchPreviewProps {
   missionName: string;
@@ -22,8 +24,20 @@ const LaunchPreview: React.FunctionComponent<LaunchPreviewProps> = ({
 }) => {
   const areImages = images?.[0] ?? false;
 
+  const {navigate} = useNavigation();
+
+  const onNavigationHandler = () => {
+    navigate(Routes.LaunchPreview, {
+      images,
+      isSuccessful,
+      date,
+      missionName,
+    });
+  };
   return (
-    <View style={PostPreviewStyles.mainWrapper}>
+    <Pressable
+      onPress={onNavigationHandler}
+      style={PostPreviewStyles.mainWrapper}>
       <View style={PostPreviewStyles.postContainer}>
         {/* IMAGE */}
         <ContainerCenter
@@ -81,7 +95,7 @@ const LaunchPreview: React.FunctionComponent<LaunchPreviewProps> = ({
           </ContainerCenter>
         </ContainerCenter>
       </View>
-    </View>
+    </Pressable>
   );
 };
 

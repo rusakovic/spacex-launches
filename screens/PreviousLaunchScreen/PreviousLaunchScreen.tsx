@@ -1,38 +1,53 @@
+import ContainerCenter from 'components/atoms/Containers/ContainerCenter';
 import DefaultText from 'components/atoms/Text/DefaultText/DefaultText';
 import {LaunchPreview} from 'components/molecules';
 import React from 'react';
-import {FlatList, View} from 'react-native';
+import {ActivityIndicator, FlatList, View} from 'react-native';
 import {usePreviousLaunches} from 'utils/fetchLaunches';
 
-interface PreviousLaunchScreenProps {}
+const PreviousLaunchScreen: React.FunctionComponent = () => {
+  const {isFetching, data, error, isError} = usePreviousLaunches();
 
-const PreviousLaunchScreen: React.FunctionComponent<PreviousLaunchScreenProps> =
-  props => {
-    const {isFetching, data, error, isError} = usePreviousLaunches();
-    console.log('🚀 ~ file: PreviousLaunchScreen.tsx ~ line 11 ~ data', data);
-
+  if (isFetching) {
     return (
-      <View>
-        <FlatList
-          data={data}
-          keyExtractor={item => item.id}
-          renderItem={({item}) => {
-            console.log(
-              '🚀 ~ file: PreviousLaunchScreen.tsx ~ line 28 ~ item',
-              item,
-            );
-            return (
-              <LaunchPreview
-                missionName={item.name}
-                isSuccessful={item.success}
-                date={item.static_fire_date_unix}
-                images={item.links?.flickr?.original ?? null}
-              />
-            );
-          }}
-        />
-      </View>
+      <ContainerCenter isVerticalCenter>
+        <ActivityIndicator size="large" />
+      </ContainerCenter>
     );
-  };
+  }
+
+  if (isError && error instanceof Error) {
+    return (
+      <ContainerCenter isVerticalCenter>
+        <DefaultText s isTextAlignCenter>
+          {error.message}
+        </DefaultText>
+      </ContainerCenter>
+    );
+  }
+
+  return (
+    <View>
+      <FlatList
+        data={data}
+        keyExtractor={item => item.id}
+        renderItem={({item}) => {
+          // If images or rockets not exist - use patches
+          const imageArray = item.links.flickr.original.length
+            ? item.links.flickr.original
+            : Object.values(item.links.patch);
+          return (
+            <LaunchPreview
+              missionName={item.name}
+              isSuccessful={item.success}
+              date={item.static_fire_date_unix}
+              images={imageArray}
+            />
+          );
+        }}
+      />
+    </View>
+  );
+};
 
 export default PreviousLaunchScreen;

@@ -36,6 +36,9 @@ const styled = {
     red: {
       redButton: '#cc5858',
     },
+    green: {
+      checkmark: '#5B8930',
+    },
     blue: {
       standardIosBlue: '#C2DFEA',
     },

@@ -5,6 +5,7 @@ import {Image, View} from 'react-native';
 import styled from '@constants/styled';
 import {PostPreviewStyles} from './styles';
 import Ionicons from 'react-native-vector-icons/Ionicons';
+import dayjs from 'dayjs';
 
 interface LaunchPreviewProps {
   missionName: string;
@@ -59,7 +60,9 @@ const LaunchPreview: React.FunctionComponent<LaunchPreviewProps> = ({
           <ContainerCenter flexDirectionRow justifyContentSpaceBetween>
             <ContainerCenter>
               <DefaultText xxs2>launch date:</DefaultText>
-              <DefaultText xs>{date}</DefaultText>
+              <DefaultText xs>
+                {dayjs.unix(date).format('DD.MM.YYYY')}
+              </DefaultText>
             </ContainerCenter>
 
             <ContainerCenter>
@@ -71,6 +74,11 @@ const LaunchPreview: React.FunctionComponent<LaunchPreviewProps> = ({
                     : 'close-circle-outline'
                 }
                 size={17}
+                color={
+                  isSuccessful
+                    ? styled.colors.green.checkmark
+                    : styled.colors.red.redButton
+                }
                 style={{textAlign: 'right'}}
               />
             </ContainerCenter>

@@ -5,6 +5,8 @@ import {LaunchPreviewProps} from 'components/molecules/LaunchPreview/LaunchPrevi
 import styled from 'constants/styled';
 import React from 'react';
 import {Image, ScrollView, View} from 'react-native';
+import {widthPercentageToDP} from 'react-native-responsive-screen';
+import Carousel from 'react-native-snap-carousel';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import {LaunchDetailsScreenStyles} from './styles';
 
@@ -17,10 +19,6 @@ const LaunchDetailsScreen: React.FunctionComponent<LaunchDetailsScreenProps> =
     const {
       params: {images, isSuccessful, date, missionName, areImages, details},
     } = useRoute<RouteProp<Record<string, LaunchDetailsScreenProps>, string>>();
-    console.log(
-      '🚀 ~ file: LaunchDetailsScreen.tsx ~ line 20 ~ images',
-      images,
-    );
 
     return (
       <View style={LaunchDetailsScreenStyles.mainWrapper}>
@@ -32,10 +30,18 @@ const LaunchDetailsScreen: React.FunctionComponent<LaunchDetailsScreenProps> =
             style={LaunchDetailsScreenStyles.imageContainer}>
             <View style={LaunchDetailsScreenStyles.imageWrapper}>
               {areImages ? (
-                <Image
-                  source={{uri: images ? images[0] : ''}}
-                  style={LaunchDetailsScreenStyles.image}
-                  resizeMode="cover"
+                <Carousel
+                  data={images || []}
+                  sliderWidth={widthPercentageToDP(90)}
+                  loop
+                  itemWidth={widthPercentageToDP(70)}
+                  renderItem={({item}) => (
+                    <Image
+                      source={{uri: images ? item : ''}}
+                      style={LaunchDetailsScreenStyles.image}
+                      resizeMode="cover"
+                    />
+                  )}
                 />
               ) : (
                 <ContainerCenter isVerticalCenter>

@@ -25,7 +25,7 @@ const PreviousLaunchScreen: React.FunctionComponent = () => {
         onClearSearchInputHandler={onClearSearchInputHandler}
         isDisabled={isError}
       />
-      {isFilteredLaunchesEmpty ? (
+      {isFilteredLaunchesEmpty && !isFetching ? (
         <LaunchesNotFound />
       ) : (
         <CommonLaunchScreen
